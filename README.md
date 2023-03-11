@@ -8,6 +8,7 @@ brew install neovim
 
 # Install neovim (Linux)
 sudo snap install --beta nvim --classic
+sudo apt-get update && sudo apt-get install build-essential
 
 # Test the install
 nvim --version
