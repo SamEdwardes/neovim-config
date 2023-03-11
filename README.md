@@ -7,13 +7,17 @@
 brew install neovim
 
 # Install neovim (Linux)
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
-./nvim.appimage
+sudo snap install --beta nvim --classic
 
-# Clone this repo
+# Test the install
+nvim --version
+
+# Clone configuration
+mkdir ~/.config
 git clone https://github.com/SamEdwardes/neovim-config.git ~/.config/nvim
 
 # Install and sync the extensions
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+
+# Open nvim
 ```

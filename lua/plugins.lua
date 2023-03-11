@@ -3,7 +3,7 @@
 -- Inspiration and reference:
 -- https://github.com/wbthomason/packer.nvim#quickstart
 -- https://github.com/jdhao/nvim-config/blob/master/lua/plugins.lua
--- https://medium.com/@leonardormlins/easiest-way-to-update-neovim-on-ubuntu-a283c66d5322
+-- https://dev.to/slydragonn/how-to-set-up-neovim-for-windows-and-linux-with-lua-and-packer-2391
 
 -- Bootstrap packer on a new machine
 local ensure_packer = function()
@@ -21,17 +21,50 @@ local packer_bootstrap = ensure_packer()
 
 -- Load extenions
 return require('packer').startup(function(use)
-  -- Packer can manage itself
+  
+  -- Packer can manage itself: https://github.com/wbthomason/packer.nvim
   use 'wbthomason/packer.nvim'
 
+  -- Theme: https://github.com/catppuccin/nvim
   use {
-    'nvim-treesitter/nvim-treesitter',
+    'catppuccin/nvim',
+    as = "catppuccin",
+    config = function()
+      require("catppuccin").setup({})
+      vim.cmd.colorscheme "catppuccin"
+    end
+  }
+
+  -- Indent blankline: https://github.com/lukas-reineke/indent-blankline.nvim
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require("indent_blankline").setup({})
+    end
+  }
+
+  -- Nvim tree: https://github.com/nvim-tree/nvim-tree.lua
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {'nvim-tree/nvim-web-devicons'},
+    tag = 'nightly',
+    config = function()
+      require("configs.nvim-tree")
+    end
+  }
+
+  -- Treesitter: https://github.com/nvim-treesitter/nvim-treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
     run = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
+        require("nvim-treesitter.install").update({ with_sync = true })
+    end,
+    config = function()
+        require("configs.treesitter")
     end,
   }
 
+  -- Telescope: https://github.com/nvim-telescope/telescope.nvim
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
@@ -41,43 +74,48 @@ return require('packer').startup(function(use)
     }
   }
 
+
+
+  -- Toggle term: https://github.com/akinsho/toggleterm.nvim
   use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly',                 -- optional, updated every week. (see issue #1193)
-  }
-
-  use({
-    'projekt0n/github-nvim-theme',
-    tag = 'v0.0.7',
-    config = function()
-      require('github-theme').setup({
-        theme_style = "dimmed"
+		"akinsho/toggleterm.nvim",
+		tag = "*",
+		config = function()
+			require("toggleterm").setup({
+        size = 10,
+        open_mapping = [[<F7>]],
+        shading_factor = 2,
+        direction = "float",
+        float_opts = {
+          border = "curved",
+          highlights = {
+            border = "Normal",
+            background = "Normal",
+          }
+        }
       })
-    end
-  })
+		end
+	}
 
+  -- Which key: https://github.com/folke/which-key.nvim
   use {
     "folke/which-key.nvim",
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require("which-key").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+      require("which-key").setup({})
     end
   }
 
+  -- Hop: https://github.com/phaazon/hop.nvim
   use {
     'phaazon/hop.nvim',
     branch = 'v2', -- optional but strongly recommended
     config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      require("hop").setup({
+        keys = 'etovxqpdygfblzhckisuran'
+      })
     end
   }
+
 end)
