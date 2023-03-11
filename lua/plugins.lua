@@ -74,8 +74,6 @@ return require('packer').startup(function(use)
     }
   }
 
-
-
   -- Toggle term: https://github.com/akinsho/toggleterm.nvim
   use {
 		"akinsho/toggleterm.nvim",

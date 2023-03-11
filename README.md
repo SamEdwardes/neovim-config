@@ -20,4 +20,5 @@ git clone https://github.com/SamEdwardes/neovim-config.git ~/.config/nvim
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # Open nvim
+nvim
 ```
