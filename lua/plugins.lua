@@ -1,8 +1,25 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
--- Read more at: https://github.com/wbthomason/packer.nvim#quickstart
--- See for inspiration: https://github.com/jdhao/nvim-config/blob/master/lua/plugins.lua
+-- Inspiration and reference:
+-- https://github.com/wbthomason/packer.nvim#quickstart
+-- https://github.com/jdhao/nvim-config/blob/master/lua/plugins.lua
+-- https://medium.com/@leonardormlins/easiest-way-to-update-neovim-on-ubuntu-a283c66d5322
 
+-- Bootstrap packer on a new machine
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+-- Load extenions
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
