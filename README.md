@@ -1,6 +1,14 @@
 # My neovim config
 
-## Usage
+## Installation
+
+### Linux - Ubuntu
+
+```bash
+curl -sSfLJ https://github.com/SamEdwardes/neovim-config/raw/main/setup.sh | bash -s --
+```
+
+### Mac
 
 ```bash
 # Install neovim (Mac)
@@ -23,3 +31,7 @@ nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 # Open nvim
 nvim
 ```
+
+## Inspiration
+
+- 
