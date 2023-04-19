@@ -3,10 +3,19 @@
 # Install nvim
 echo "Installing nvim..."
 curl -LJO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
-mkdir /opt/nvim
-tar -xf nvim-linux64.tar.gz -C /opt/nvim
+
+user=$(whoami)
+
+if [ "$user" = 'root' ]; then
+    mkdir /opt/nvim
+    tar -xf nvim-linux64.tar.gz -C /opt/nvim
+    ln -s /opt/nvim/nvim-linux64/bin/nvim /usr/local/bin/nvim
+else
+    mkdir -p "$HOME/.local/nvim"
+    tar -xf nvim-linux64.tar.gz -C "$HOME/.local/nvim"
+    ln -s "$HOME/.local/nvim"/nvim-linux64/bin/nvim "$HOME/bin/nvim"
+fi
 rm nvim-linux64.tar.gz
-ln -s /opt/nvim/nvim-linux64/bin/nvim /usr/local/bin/nvim
 echo "nvim installation complete!"
 
 # Configure nvim
