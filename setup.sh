@@ -22,7 +22,7 @@ echo "nvim installation complete!"
 echo "Configuring nvim..."
 mkdir -p "$HOME/.config"
 git clone https://github.com/SamEdwardes/neovim-config.git "$HOME/.config/nvim"
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim --headless -c 'autocmd User PackerComplete quitall' -c ':PackerSync'
 echo ""
 echo "nvim configuration complete!"
 
