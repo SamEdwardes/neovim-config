@@ -22,9 +22,12 @@ echo "nvim installation complete!"
 echo "Configuring nvim..."
 mkdir -p "$HOME/.config"
 git clone https://github.com/SamEdwardes/neovim-config.git "$HOME/.config/nvim"
-nvim --headless -c 'autocmd User PackerComplete quitall' -c ':PackerSync'
+# Seems to be a bug where it will fail the first time. So run it twice.
+echo "Syncing nvim packages..."
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' > /dev/null 2>&1
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 echo ""
-echo "nvim configuration complete!"
+echo "neovim configuration complete!"
 
 echo ""
 echo "neovim has successfully been installed and configured. The first time you run nvim it will take about 30 seconds to install the packges. You can start neovim by running..."
