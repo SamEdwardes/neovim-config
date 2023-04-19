@@ -23,6 +23,7 @@ echo "Configuring nvim..."
 mkdir -p "$HOME/.config"
 git clone https://github.com/SamEdwardes/neovim-config.git "$HOME/.config/nvim"
 # Seems to be a bug where it will fail the first time. So run it twice.
+# https://github.com/wbthomason/packer.nvim/issues/502
 echo "Syncing nvim packages..."
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' > /dev/null 2>&1
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
