@@ -13,7 +13,7 @@ if [ "$user" = 'root' ]; then
 else
     mkdir -p "$HOME/.local/nvim"
     tar -xf nvim-linux64.tar.gz -C "$HOME/.local/nvim"
-    ln -s "$HOME/.local/nvim"/nvim-linux64/bin/nvim "$HOME/bin/nvim"
+    ln -s "$HOME/.local/nvim/nvim-linux64/bin/nvim" "$HOME/bin/nvim"
 fi
 rm nvim-linux64.tar.gz
 echo "nvim installation complete!"
