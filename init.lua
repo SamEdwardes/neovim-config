@@ -1,2 +1,2 @@
-require('plugins')
-require('settings')
+require("sam.core")
+require("sam.lazy")
