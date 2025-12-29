@@ -20,3 +20,6 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 
 -- toggle auto completions
 keymap.set('n', '<leader>a', ':NvimCmpToggle<CR>', { noremap = true, silent = true, desc = "Toggle nvim-cmp autocomplete" })
+
+-- terminal
+keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, desc = "Exit insert mode and enter normal mode in the terminal" })

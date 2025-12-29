@@ -6,6 +6,15 @@ return {
     options = {
       mode = "tabs",
       separator_style = "slant",
+      color_icons = false,
+      offsets = {
+        {
+          filetype = "NvimTree",
+          text = "File Explorer",
+          text_align = "left",
+          separator = true,
+        }
+      },
     },
   },
 }

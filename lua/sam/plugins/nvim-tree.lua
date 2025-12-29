@@ -19,6 +19,9 @@ return {
           enable = true,
         },
         icons = {
+          show = {
+            git = false,
+          },
           glyphs = {
             folder = {
               arrow_closed = "", -- arrow when folder is closed
